@@ -55,7 +55,14 @@ module.exports = {
 	updateRedirect: function(req, res){
 		var sid = req.params.id;
 		sails.log("redirect");
-		res.view('jobSeeker/updateForm', {seekerId: sid});
+		Seeker.find({id: sid}).exec(function (err, found){
+			if(err){
+				return res.serverError();
+			}
+			else{
+				return res.view("jobSeeker/updateForm", {updateSeeker: found[0]});
+			}
+		});
 	},
 	update: function(req, res){
 		sails.log("Inside update");

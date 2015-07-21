@@ -50,7 +50,16 @@ module.exports = {
 	},
 	updateRedirect: function(req, res){
 		sails.log("inside update redirect");
-		res.view("jobs/updateForm", {jobId: req.params.id});
+		var jID = req.params.id;
+		Jobs.find({id: jID}).exec(function (err, found){
+			if(err){
+				return res.serverError();
+			}
+			else{
+				//sails.log("profile of found id "+ found[0].profile);
+				return res.view('jobs/updateForm', {updateJob: found[0]});
+			}
+		});
 	},
 	update: function(req, res){
 		sails.log("inside job update");

@@ -25,16 +25,16 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron" style = "background-color:rosybrown">
-			<h1>Update Job Details Here</h1>
+			<h1>Update Job Details Here <%= updateJob.id %></h1>
 			<label for="profile">Profle: </label>
-			<input 	type = "text" id = "profile" name = "profile"><br>
+			<input 	type = "text" id = "profile" name = "profile" value = "<%= updateJob.profile %>"><br>
 			<label for="desc">Description: </label>
-			<input type = "text" id = "desc" name = "desc"><br>
+			<input type = "text" id = "desc" name = "desc" value = "<%= updateJob.description %>"><br>
 			<label for="sal">Salary: </label>
-			<input type = "text" id = "sal" name = "sal"><br>
+			<input type = "text" id = "sal" name = "sal" value = "<%= updateJob.salary %>"><br>
 			<label for="loc">Location: </label>
-			<input type = "text" id = "loc" name = "loc"><br>
-			<input class = "update_btn" type = "button" value = "Update" jId = "<%= jobId %>"><br>
+			<input type = "text" id = "loc" name = "loc" value = "<%= updateJob.location %>"><br>
+			<input class = "update_btn" type = "button" value = "Update" jId = "<%= updateJob.id %>"><br>
 		</div>	
 	</div>
 	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
