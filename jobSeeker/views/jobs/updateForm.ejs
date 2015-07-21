@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<title>Job Portal</title>
+</head>
+<body>
+	<nav class = "navbar navbar-inverse">
+		<div class = "container-fluid">
+			<div class = "navbar-header">
+				<a class = "navbar-brand" href = "/">DreamJobs.com</a>
+			</div>
+			<div>
+				<ul class = "nav navbar-nav">
+					<li class = "active"><a href="/">Home</a></li>
+					<li><a href="/jobSeeker/signup">Job-Seeker Sign Up</a></li>
+					<li><a href="/jobs/addJob">Post Jobs</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="jumbotron" style = "background-color:rosybrown">
+			<h1>Update Job Details Here</h1>
+			<label for="profile">Profle: </label>
+			<input 	type = "text" id = "profile" name = "profile"><br>
+			<label for="desc">Description: </label>
+			<input type = "text" id = "desc" name = "desc"><br>
+			<label for="sal">Salary: </label>
+			<input type = "text" id = "sal" name = "sal"><br>
+			<label for="loc">Location: </label>
+			<input type = "text" id = "loc" name = "loc"><br>
+			<input class = "update_btn" type = "button" value = "Update" jId = "<%= jobId %>"><br>
+		</div>	
+	</div>
+	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
+		<div class  = "container-fluid">
+			<div class = "navbar-header">
+				<p style="color:deepskyblue"> © 2015 <a href="/">DreamJobs.com</a>. All Rights Are Reserved.</p>
+		</div>
+		
+	</nav>
+</html> 
+<script>
+	$(document).ready(function(){
+	  	$(".update_btn").click(function(){
+		    var jobID = $(this).attr("jId");
+		    var profile = $("#profile").val();
+		    var desc = $("#desc").val();
+		    var sal = $('#sal').val();
+		    var loc = $("#loc").val();
+		    $.ajax({
+		        method: "PUT",
+		        url: "/jobs/updateFinal/" +jobID,
+		        data : {profile: profile, description: desc, salary: sal, location: loc},
+		        success: function(msg){
+		          	if(msg == "Success"){
+		          		alert("Updated");
+		        	}
+		          	else{
+		          		alert("Error! Try again");
+		          	}
+		          	window.location.replace("http://localhost:1337/jobs/listJob");
+		        }
+		    });
+	  });
+});
+</script>

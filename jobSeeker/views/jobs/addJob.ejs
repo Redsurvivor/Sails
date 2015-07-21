@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang = "en">
 <head>
 	<meta charset = "utf-8">
@@ -17,23 +17,20 @@
 			<div>
 				<ul class = "nav navbar-nav">
 					<li class = "active"><a href="/">Home</a></li>
-					<li><a href="/jobs/addJob">Post Jobs</a></li>
+					<li><a href="/jobSeeker/signup">Job-Seeker Sign Up</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
 	<div class = "container">
-		<div class="jumbotron" style="background-color:lightgrey">
-			<h1>Fill Your Details Here</h1>
-			<form action="/jobSeeker/create" method="POST">
-				Your Name: <input 	type = "text" name = "sname" placeholder = "eg. Sam Joseph"><br>
-				Address: <input type = "text" name = "address" placeholder = "eg. Flat No, Street, City"><br>
-				email: <input type = "email" name = "email" placeholder = "eg. sam.joseph@example.com"><br>
-				Qualifications: <input type = "text" name = "qualif" placeholder = "eg. Masters in Photonics"><br>
-				Expected Salary: <input type = "number" name = "sal" placeholder = "eg. 900000"><br>
-				Experience: <input type = "number" name = "exp" placeholder = "eg. 5"><br>
-				<input type = "submit" value = "Sign Up">
+		<div class="jumbotron" style="background-color:rosybrown;">
+			<h1>Fill Job Details Here</h1>
+			<form action="/jobs/create" method="POST">
+				Profile: <input 	type = "text" name = "jProfile" placeholder = "eg. Software Developer"><br>
+				Description: <input type = "text" name = "desc" placeholder = "eg. Agile Development"><br>
+				Salary: <input type = "text" name = "sal" placeholder = "eg. 800000"><br>
+				Location: <input type = "text" name = "loc" placeholder = "eg. Delhi"><br>
+							<input type = "submit" value = "Submit" align = "right">
 			</form>
 		</div>
 	</div>

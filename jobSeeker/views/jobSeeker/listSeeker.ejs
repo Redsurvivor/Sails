@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<title>Job Portal</title>
+</head>
+<body>
+	<nav class = "navbar navbar-inverse">
+		<div class = "container-fluid">
+			<div class = "navbar-header">
+				<a class = "navbar-brand" href = "/">DreamJobs.com</a>
+			</div>
+			<div>
+				<ul class = "nav navbar-nav">
+					<li class = "active"><a href="/">Home</a></li>
+					<li><a href="/jobSeeker/signup">Job-Seeker Sign Up</a></li>
+					<li><a href="/jobs/addJob">Post Jobs</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<h1>These are the job Seekers:</h1><h2><pre><a href="/">Home</a></pre></h2>
+		<b><pre>ID        Name        Address        Email        Qualification    Expected Salary    Experience    delete    Update</pre></b><br>
+		<% for(var i = 0; i < allSeeker.length; i++){ 
+				%><pre><%= allSeeker[i].id %>        <%= allSeeker[i].name %>        <%= allSeeker[i].address %>        <%= allSeeker[i].email %>        <%= allSeeker[i].qualification %>    <%= allSeeker[i].expSalary %>    <%= allSeeker[i].experience %>    <input type="button" class="delete_btn" sId="<%=allSeeker[i].id%>" value="Delete" >    <a href="/jobSeeker/update/<%= allSeeker[i].id %>">update</a>
+		<% } %>
+	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
+		<div class  = "container-fluid">
+			<div class = "navbar-header">
+				<p style="color:deepskyblue"> © 2015 <a href="/">DreamJobs.com</a>. All Rights Are Reserved.</p>
+		</div>
+		
+	</nav>
+</html> 
+<script>
+//	var buttonClick = function (){
+	  $(document).ready(function(){
+	      $(".delete_btn").click(function(){
+	        var seekerId = $(this).attr("sId");
+	        $.ajax({
+	              method: "DELETE",
+	              url: "/jobSeeker/delete/" +seekerId,
+	              success: function(msg){
+	              	if(msg === "Success"){
+	              		alert("deleted successfully");
+	              	}
+	              	else{
+	              		alert("error! try again");
+	              	}
+	              	window.location.replace("http://localhost:1337/jobSeeker/listSeeker");
+	              }
+	        });
+	      });
+      });
+	//}
+    
+</script>

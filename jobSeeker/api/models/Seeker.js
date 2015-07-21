@@ -6,7 +6,7 @@
 */
 
 module.exports = {
-	connection: 'myMysqlServer',
+    connection: 'myMysqlServer',
   	attributes: {
   		name: {
   			type: "string",

@@ -34,33 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  },
-
-  // *  GET /boat -> BoatController.find - List of all
-  // *  GET /boat/:id -> BoatController.findOne - Details of one
-  // *  POST /boat -> BoatController.create - Create new - Returns new boat
-  // *  PUT /boat/:id -> BoatController.update - Update - return updated boat
-  // *  DELETE /boat/:id -> BoatController.destroy - returns deleted boat
- // GET /boat/new -> BoatController.new - Create form
- // GET /boat/:id/edit -> BoatController.edit - Edit form
-
-  //JOB SEEKER MODEL
-  'get /jobSeeker/listSeeker': 'SeekerController.listAll',    //list all
-  'post /jobSeeker/create': 'SeekerController.create',  //creates and returns new boat
-  'put /jobSeeker/updateFinal/:id': 'SeekerController.update', // returns updates boat
-  'delete /jobSeeker/delete/:id': 'SeekerController.delete',  //returns deleted boat
-  'get /jobSeeker/signup': 'SeekerController.signup', // form for create
-  'get /jobSeeker/update/:id': 'SeekerController.updateRedirect', //form for update boat
-  
-
-  //JOBS MODEL
-  'get /jobs/listJob': 'JobsController.listJobs',  // list all
-  'post /jobs/create': 'JobsController.create', //create and returns new boat
-  'put /jobs/updateFinal/:id': 'JobsController.update', //returns updated boat
-  'delete /jobs/delete/:id': 'JobsController.delete', //returns deleted boat
-  'get /jobs/addJob': 'JobsController.addJobs', //form for create boat
-  'get /jobs/update/:id': 'JobsController.updateRedirect' //form for update boat
-  
+  }
 
   /***************************************************************************
   *                                                                          *

@@ -1,0 +1,3 @@
+mysql -> username(root) and pwd(root)
+command -> mysql -u root -p
+
