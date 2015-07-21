@@ -23,11 +23,45 @@
 			</div>
 		</div>
 	</nav>
-	<h1>These are the job Seekers:</h1><h2><pre><a href="/">Home</a></pre></h2>
+	<!-- <h1>These are the job Seekers:</h1><h2><pre><a href="/">Home</a></pre></h2>
 		<b><pre>ID        Name        Address        Email        Qualification    Expected Salary    Experience    delete    Update</pre></b><br>
 		<% for(var i = 0; i < allSeeker.length; i++){ 
 				%><pre><%= allSeeker[i].id %>        <%= allSeeker[i].name %>        <%= allSeeker[i].address %>        <%= allSeeker[i].email %>        <%= allSeeker[i].qualification %>    <%= allSeeker[i].expSalary %>    <%= allSeeker[i].experience %>    <input type="button" class="delete_btn" sId="<%=allSeeker[i].id%>" value="Delete" >    <a href="/jobSeeker/update/<%= allSeeker[i].id %>">update</a>
-		<% } %>
+		<% } %> -->
+	<div class = "container">
+		<h2>Current Seekers</h2>
+		<p>All the seekers that our registered with us and looking for their dream jobs are listed below</p>
+		<table class = "table">
+			<thead>
+				<tr>
+					<th>Seeker ID</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Email</th>
+					<th>Qualification</th>
+					<th>Expected Salary</th>
+					<th>Experience</th>
+					<th>Delete</th>
+					<th>Update</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var iterator = 0; iterator < allSeeker.length; iterator++){ %>
+					<tr class="success">
+						<td><%= allSeeker[iterator].id %></td>
+						<td><%= allSeeker[iterator].name %></td>
+						<td><%= allSeeker[iterator].address %></td>
+						<td><%= allSeeker[iterator].email %></td>
+						<td><%= allSeeker[iterator].qualification %></td>
+						<td><%= allSeeker[iterator].expSalary %></td>
+						<td><%= allSeeker[iterator].experience %></td>
+						<td><input type="button" class="delete_btn" sId="<%=allSeeker[iterator].id%>" value="Delete" ></td>
+						<td><a href="/jobSeeker/update/<%= allSeeker[iterator].id %>">Update</a></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
 	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
 		<div class  = "container-fluid">
 			<div class = "navbar-header">
