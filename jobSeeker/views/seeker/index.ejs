@@ -53,7 +53,7 @@
 						<td><%= allSeeker[iterator].experience %></td>
 						<td><input type="button" class="delete_btn" sId="<%=allSeeker[iterator].id%>" value="Delete" ></td>
 						<td><a href="/seeker/<%= allSeeker[iterator].id %>/edit">Update</a></td>
-						<td><a href="/seeker/apply/<%= allSeeker[iterator].id %>">Apply</a></td>
+						<td><a href="/seeker/<%= allSeeker[iterator].id %>/apply">Apply</a></td>
 					</tr>
 				<% } %>
 			</tbody>

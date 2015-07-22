@@ -20,7 +20,7 @@ module.exports = {
 			experience: req.body.exp
 		}).exec(function(err, created){
 			if(err){
-					return res.serverError();
+				return res.serverError();
 			}
 			else{
 				//sails.log("success");
@@ -83,8 +83,57 @@ module.exports = {
 			}
 		})
 	},
-	applyJobs: function(req, res){
-		//sails.log("inside applyRedirect");
+
+	// applyJobs2: function(req, res) {
+	// 	var seekerId = req.params.id;
+
+	// 	sails.log.verbose("applyJobs2 Entry point");
+
+	// 	async.auto({
+	// 		seeker: function(callback) {
+	// 			Seeker.findOne(seekerId).populate('appliedJobs').exec(function(err, seeker) {
+	// 				if(err) return callback(err);
+	// 				if(!seeker) return callback({code: 1, message: "Seeker not found"});
+	// 				return callback(null, seeker);
+	// 			});
+	// 		},
+
+	// 		jobs: function(callback, results) {
+	// 			Jobs.find().exec(callback);
+	// 		},
+
+	// 	}, function(err, results) {
+	// 		if(err) {
+	// 			if(err.code === 1)
+	// 				return res.notFound(err);
+	// 			else
+	// 				return res.serverError(err); 
+	// 		}
+
+	// 		sails.log.info("Results:", results);
+	// 		var appliedJobs = results.seeker.appliedJobs;
+	// 		//var availableJobs = _.difference(results, appliedJobs);
+	// 		var availableJobs = _.reject(results.jobs, function(thisJob){
+	// 			if(_.find(appliedJobs, function(appliedJob, thisJob){
+	// 				if(appliedJob == thisJob)
+	// 					return true;
+	// 				else false;
+	// 			}))
+	// 				return true;
+	// 			else
+	// 				false;
+	// 		});
+	// 		sails.log.info("AppliedJobs:", appliedJobs);
+	// 		sails.log.info("availableJobs:", availableJobs);
+
+	// 		return res.view('seeker/applyjobs', {availableJobs: availableJobs, appliedJob: appliedJobs, seekerID: seekerId});
+	// 	});
+	// },
+
+	// Re-write this function
+	// Don't show this page if Seeker doesn't exist, return 404
+	showApply: function(req, res){
+		//sails.log("inside show apply");
 		var seekerId = req.params.id;
 		Jobs.find().populate('seekersApplied').exec(function (err, found){
 			if(err){
@@ -124,13 +173,11 @@ module.exports = {
 			};
 		})
 	},
+	// Check Seeker here; Return 404
 	apply: function(req, res){
-		//sails.log("inside apply");
-		var seekerId = req.params.id1;
-		var jobId = req.params.id2;
-		// sails.log("+++++ "+seekerId);
-		// sails.log("**** "+jobId);
-		// return res.ok("Success");
+		var seekerId = req.params.seekerId;
+		var jobId = req.params.jobId;
+		// Use Model.findOne, whenever you expect 0 or 1 result
 		Seeker.find({id: seekerId}).exec(function (err, found){
 			if(err){
 				return res.serverError();

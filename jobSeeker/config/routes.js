@@ -51,8 +51,8 @@ module.exports.routes = {
   'DELETE /seeker/:id': 'SeekerController.delete',  //returns deleted boat
   'GET /seeker/new': 'SeekerController.new', // form for create
   'GET /seeker/:id/edit': 'SeekerController.edit', //form for update boat
-  'GET /seeker/apply/:id': 'SeekerController.applyJobs',
-  'PUT /seeker/applyForThis/:id1/:id2': 'SeekerController.apply',
+  'GET /seeker/:id/apply': 'SeekerController.showApply',
+  'PUT /seeker/:seekerId/apply/:jobId': 'SeekerController.apply',
 
   //JOBS MODEL
   'GET /jobs': 'JobsController.index',  // list all

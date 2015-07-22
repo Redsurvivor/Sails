@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<title>Job Portal</title>
+</head>
+<body>
+	<nav class = "navbar navbar-inverse">
+		<div class = "container-fluid">
+			<div class = "navbar-header">
+				<a class = "navbar-brand" href = "/">DreamJobs.com</a>
+			</div>
+			<div>
+				<ul class = "nav navbar-nav">
+					<li class = "active"><a href="/">Home</a></li>
+					<li><a href="/seeker/new">Job-Seeker Sign Up</a></li>
+					<li><a href="/jobs/new">Post Jobs</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class = "container">
+		<h2>Available Jobs For You</h2>
+		<p>All the jobs are listed here from our database to fulfill your dream <%= seekerID %></p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Job ID</th>
+					<th>Profile</th>
+					<th>Description</th>
+					<th>Salary</th>
+					<th>Location</th>
+					<th>Apply</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var iterator = 0; iterator < availableJobs.length; iterator++){ %>
+					<tr class="danger">
+						<td><%= availableJobs[iterator].id %></td>
+						<td><%= availableJobs[iterator].profile %></td>
+						<td><%= availableJobs[iterator].description %></td>
+						<td><%= availableJobs[iterator].salary %></td>
+						<td><%= availableJobs[iterator].location %></td>
+						<td><input type = "button" class = "apply_btn" value = "Apply" jid = "<%= availableJobs[iterator].id %>"></td>
+					</tr>
+				<% } %>
+				<% for(var iterator = 0; iterator < appliedJob.length; iterator++){ %>
+					<tr class="warning">
+						<td><%= appliedJob[iterator].id %></td>
+						<td><%= appliedJob[iterator].profile %></td>
+						<td><%= appliedJob[iterator].description %></td>
+						<td><%= appliedJob[iterator].salary %></td>
+						<td><%= appliedJob[iterator].location %></td>
+						<td><input type = "button" class = "apply_btn" value = "Apply" jid = "<%= appliedJob[iterator].id %>" disabled></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
+		<div class  = "container-fluid">
+			<div class = "navbar-header">
+				<p style="color:deepskyblue"> © 2015 <a href="/">DreamJobs.com</a>. All Rights Are Reserved.</p>
+		</div>
+		
+	</nav>
+</html> 
+<script>
+	$(document).ready(function (){
+		$(".apply_btn").click(function (){
+			var seekerId = "<%= seekerID %>";
+			var jobId = $(this).attr("jid");
+			//alert("***** "+seekerId);
+			$.ajax({
+				method: "PUT",
+				url: "/seeker/"+seekerId+"/apply/"+jobId,
+				data: {},
+				success: function (msg){
+					if(msg === "Success"){
+						alert("Congratulations! Successfully applied");
+					}
+					else{
+						alert("Please try again");
+					}
+					location.reload();
+				}
+			});
+		});
+	});
+</script>
