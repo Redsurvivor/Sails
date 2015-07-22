@@ -48,6 +48,16 @@
 						<td><input type = "button" class = "apply_btn" value = "Apply" jid = "<%= availableJobs[iterator].id %>"></td>
 					</tr>
 				<% } %>
+				<% for(var iterator = 0; iterator < appliedJob.length; iterator++){ %>
+					<tr class="warning">
+						<td><%= appliedJob[iterator].id %></td>
+						<td><%= appliedJob[iterator].profile %></td>
+						<td><%= appliedJob[iterator].description %></td>
+						<td><%= appliedJob[iterator].salary %></td>
+						<td><%= appliedJob[iterator].location %></td>
+						<td><input type = "button" class = "apply_btn" value = "Apply" jid = "<%= appliedJob[iterator].id %>" disabled></td>
+					</tr>
+				<% } %>
 			</tbody>
 		</table>
 	</div>

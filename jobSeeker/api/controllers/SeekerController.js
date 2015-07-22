@@ -86,20 +86,46 @@ module.exports = {
 	applyRedirect: function(req, res){
 		//sails.log("inside applyRedirect");
 		var seekerId = req.params.id;
-		Jobs.find().exec(function (err, found){
+		Jobs.find().populate('seekersApplied').exec(function (err, found){
 			if(err){
 				return res.serverError();
 			}
 			else{
-				// var applied = [];
-				// var available = [];
-				// found.foreach();
-				return res.view("jobSeeker/listAvailableJobs", {availableJobs: found, seekerID: seekerId});
+				var applied = [];
+				var available = [];
+				for(var loopJobs = 0; loopJobs < found.length; loopJobs++){
+					var applierCount = found[loopJobs].toJSON().seekersApplied.length;
+					var appliedFlag = false;
+					// sails.log("loopJobs: "+loopJobs);
+					// sails.log("applierCount: "+applierCount);
+					// sails.log("appliedFlag: "+appliedFlag);
+					for(var loopAppliers = 0; loopAppliers < applierCount; loopAppliers++){
+						// sails.log("loopAppliers: "+loopAppliers);
+						// sails.log("Applier ID is: "+found[loopJobs].toJSON().seekersApplied[loopAppliers].id);
+						// sails.log("Seeker ID is: "+seekerId);
+						if(found[loopJobs].toJSON().seekersApplied[loopAppliers].id == seekerId){
+							//sails.log("SeekerID found: "+seekerId);
+							appliedFlag = true;
+							break;
+						}
+					}
+					if(appliedFlag === true){
+						//sails.log("Pushing to applied");
+						applied.push(found[loopJobs].toJSON());
+					}
+					else{
+						//sails.log("pushing to available");
+						available.push(found[loopJobs].toJSON());
+					}
+				}
+				// sails.log("********** "+available.length);
+				// sails.log("********** "+applied.length);
+				return res.view("jobSeeker/listAvailableJobs", {availableJobs: available, appliedJob: applied, seekerID: seekerId});
 			};
 		})
 	},
 	apply: function(req, res){
-		//sails.log("inside apply");
+		sails.log("inside apply");
 		var seekerId = req.params.id1;
 		var jobId = req.params.id2;
 		// sails.log("+++++ "+seekerId);
