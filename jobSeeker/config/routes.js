@@ -45,22 +45,22 @@ module.exports.routes = {
  // GET /boat/:id/edit -> BoatController.edit - Edit form
 
   //JOB SEEKER MODEL
-  'get /jobSeeker/listSeeker': 'SeekerController.listAll',    //list all
-  'post /jobSeeker/create': 'SeekerController.create',  //creates and returns new boat
-  'put /jobSeeker/updateFinal/:id': 'SeekerController.update', // returns updates boat
-  'delete /jobSeeker/delete/:id': 'SeekerController.delete',  //returns deleted boat
-  'get /jobSeeker/signup': 'SeekerController.signup', // form for create
-  'get /jobSeeker/update/:id': 'SeekerController.updateRedirect', //form for update boat
-  'get /jobSeeker/apply/:id': 'SeekerController.applyRedirect',
-  'put /jobSeeker/applyForThis/:id1/:id2': 'SeekerController.apply',
+  'GET /seeker': 'SeekerController.index',    //list all
+  'POST /seeker': 'SeekerController.create',  //creates and returns new boat
+  'PUT /seeker/:id': 'SeekerController.update', // returns updates boat
+  'DELETE /seeker/:id': 'SeekerController.delete',  //returns deleted boat
+  'GET /seeker/new': 'SeekerController.new', // form for create
+  'GET /seeker/:id/edit': 'SeekerController.edit', //form for update boat
+  'GET /seeker/apply/:id': 'SeekerController.applyJobs',
+  'PUT /seeker/applyForThis/:id1/:id2': 'SeekerController.apply',
 
   //JOBS MODEL
-  'get /jobs/listJob': 'JobsController.listJobs',  // list all
-  'post /jobs/create': 'JobsController.create', //create and returns new boat
-  'put /jobs/updateFinal/:id': 'JobsController.update', //returns updated boat
-  'delete /jobs/delete/:id': 'JobsController.delete', //returns deleted boat
-  'get /jobs/addJob': 'JobsController.addJobs', //form for create boat
-  'get /jobs/update/:id': 'JobsController.updateRedirect' //form for update boat
+  'GET /jobs': 'JobsController.index',  // list all
+  'POST /jobs': 'JobsController.create', //create and returns new boat
+  'PUT /jobs/:id': 'JobsController.update', //returns updated boat
+  'DELETE /jobs/:id': 'JobsController.delete', //returns deleted boat
+  'GET /jobs/new': 'JobsController.new', //form for create boat
+  'GET /jobs/:id/edit': 'JobsController.edit' //form for update boat
   
 
   /***************************************************************************

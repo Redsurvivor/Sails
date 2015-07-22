@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<title>Job Portal</title>
+</head>
+<body>
+	<nav class = "navbar navbar-inverse">
+		<div class = "container-fluid">
+			<div class = "navbar-header">
+				<a class = "navbar-brand" href = "/">DreamJobs.com</a>
+			</div>
+			<div>
+				<ul class = "nav navbar-nav">
+					<li class = "active"><a href="/">Home</a></li>
+					<li><a href="/seeker/new">Job-Seeker Sign Up</a></li>
+					<li><a href="/jobs/new">Post Jobs</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class = "jumbotron" style="background-color:lightgrey;">
+			<h1>Update Your Details here</h1>
+			<label for="name">Name: </label>
+			<input 	type = "text" id = "sname" name = "sname" value = "<%= updateSeeker.name %>"><br>
+			<label for="addr">Address: </label>
+			<input type = "text" id = "addr" name = "address" value = "<%= updateSeeker.address%>"><br>
+			<label for="email">Email: </label>
+			<input type = "email" id = "email" name = "email" value = "<%= updateSeeker.email %>"><br>
+			<label for="qualif">Qualification: </label>
+			<input type = "text" id = "qualif" name = "qualif" value = "<%= updateSeeker.qualification %>"><br>
+			<label for="sal">Expected Salary: </label>
+			<input type = "number" id = "sal" name = "sal" value = "<%= updateSeeker.expSalary %>"><br>
+			<label for="exp">Experience: </label>
+			<input type = "number" id = "exp" name = "exp" value = "<%= updateSeeker.experience %>"><br>
+			<input class = "update_btn" type = "button" value = "Update" sId = "<%= updateSeeker.id %>"><br>
+		</div>		
+	</div>
+	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
+		<div class  = "container-fluid">
+			<div class = "navbar-header">
+				<p style="color:deepskyblue"> © 2015 <a href="/">DreamJobs.com</a>. All Rights Are Reserved.</p>
+		</div>
+		
+	</nav>
+</html> 
+<script>
+	$(document).ready(function(){
+	  	$(".update_btn").click(function(){
+		    var seekerID = $(this).attr("sId");
+		    var name = $("#sname").val();
+		    var address = $("#addr").val();
+		    var email = $('#email').val();
+		    var qualif = $("#qualif").val();
+		    var salary = $('#sal').val();
+            var experience = $("#exp").val();
+		    $.ajax({
+		        method: "PUT",
+		        url: "/seeker/" +seekerID,
+		        data : {name: name, address: address, email: email, qualification: qualif, expSalary: salary, experience: experience},
+		        success: function(msg){
+		          	if(msg == "Success"){
+		          		alert("Updated");
+		        	}
+		          	else{
+		          		alert("Error! Try again");
+		          	}
+		          	window.location.replace("http://localhost:1337/seeker");
+		        }
+		    });
+	  });
+});
+</script>

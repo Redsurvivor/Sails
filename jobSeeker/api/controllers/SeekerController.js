@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-	signup: function(req, res){
-		res.view('jobSeeker/signup');
+	new: function(req, res){
+		res.view();
 	},
 	create: function(req, res){
 		//sails.log("Error1");
@@ -23,20 +23,20 @@ module.exports = {
 					return res.serverError();
 			}
 			else{
-				sails.log("success");
+				//sails.log("success");
 				res.redirect('/');	
 			}
 		});
 	},
-	listAll: function(req, res){
+	index: function(req, res){
 		Seeker.find().exec(function(err, seekers){
 			if(err){
 				sails.log("Error2");
 				return res.serverError(err);
 			}
 			else{
-				sails.log("Success2");
-				return res.view('jobSeeker/listSeeker', {allSeeker: seekers});
+				//sails.log("Success2");
+				return res.view({allSeeker: seekers});
 			}
 		});
 	},
@@ -52,20 +52,20 @@ module.exports = {
 			}
 		});
 	},
-	updateRedirect: function(req, res){
+	edit: function(req, res){
 		var sid = req.params.id;
-		sails.log("redirect");
+		//sails.log("redirect");
 		Seeker.find({id: sid}).exec(function (err, found){
 			if(err){
 				return res.serverError();
 			}
 			else{
-				return res.view("jobSeeker/updateForm", {updateSeeker: found[0]});
+				return res.view({updateSeeker: found[0]});
 			}
 		});
 	},
 	update: function(req, res){
-		sails.log("Inside update");
+		//sails.log("Inside update");
 		var sid = req.params.id;
 		var name = req.body.name;
 		var addr = req.body.address;
@@ -83,7 +83,7 @@ module.exports = {
 			}
 		})
 	},
-	applyRedirect: function(req, res){
+	applyJobs: function(req, res){
 		//sails.log("inside applyRedirect");
 		var seekerId = req.params.id;
 		Jobs.find().populate('seekersApplied').exec(function (err, found){
@@ -120,12 +120,12 @@ module.exports = {
 				}
 				// sails.log("********** "+available.length);
 				// sails.log("********** "+applied.length);
-				return res.view("jobSeeker/listAvailableJobs", {availableJobs: available, appliedJob: applied, seekerID: seekerId});
+				return res.view({availableJobs: available, appliedJob: applied, seekerID: seekerId});
 			};
 		})
 	},
 	apply: function(req, res){
-		sails.log("inside apply");
+		//sails.log("inside apply");
 		var seekerId = req.params.id1;
 		var jobId = req.params.id2;
 		// sails.log("+++++ "+seekerId);

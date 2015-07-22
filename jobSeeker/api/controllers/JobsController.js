@@ -6,12 +6,11 @@
  */
 
 module.exports = {
-	addJobs: function(req, res){
-		sails.log("inside add job");
-		res.view('jobs/addJob');
+	new: function(req, res){
+		res.view();
 	},
 	create: function(req, res){
-		sails.log("inside create job");
+		//sails.log("inside create job");
 		Jobs.create({
 			profile: req.body.jProfile,
 			description: req.body.desc,
@@ -26,19 +25,19 @@ module.exports = {
 			}
 		});
 	},
-	listJobs: function(req, res){
-		sails.log("inside list jobs");
+	index: function(req, res){
+		//sails.log("inside list jobs");
 		Jobs.find().exec(function (err, listed){
 			if(err){
 				return res.serverError();
 			}
 			else{
-				return res.view('jobs/listJob', {allJobs: listed});
+				return res.view({allJobs: listed});
 			}
 		});
 	},
 	delete: function(req, res){
-		sails.log("inside delete jobs");
+		//sails.log("inside delete jobs");
 		Jobs.destroy({id: req.params.id}).exec(function (err){
 			if(err){
 				return res.serverError();
@@ -48,8 +47,8 @@ module.exports = {
 			}
 		});
 	},
-	updateRedirect: function(req, res){
-		sails.log("inside update redirect");
+	edit: function(req, res){
+		//sails.log("inside update redirect");
 		var jID = req.params.id;
 		Jobs.find({id: jID}).exec(function (err, found){
 			if(err){
@@ -57,12 +56,12 @@ module.exports = {
 			}
 			else{
 				//sails.log("profile of found id "+ found[0].profile);
-				return res.view('jobs/updateForm', {updateJob: found[0]});
+				return res.view({updateJob: found[0]});
 			}
 		});
 	},
 	update: function(req, res){
-		sails.log("inside job update");
+		//sails.log("inside job update");
 		var jid = req.params.id;
 		var profile = req.body.profile;
 		var desc = req.body.description;

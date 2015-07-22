@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en">
 <head>
 	<meta charset = "utf-8">
@@ -17,45 +17,33 @@
 			<div>
 				<ul class = "nav navbar-nav">
 					<li class = "active"><a href="/">Home</a></li>
-					<li><a href="/seeker/new">Job-Seeker Sign Up</a></li>
 					<li><a href="/jobs/new">Post Jobs</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	
 	<div class = "container">
-		<div class = "jumbotron">
-			<h1>
-				Land up to your dream job by signing up with us
-			</h1>
-			<p>Around 1000 jobs are posted here on daily basis which leads you to apply for the jobs, that were once your dream. So, sign up with us and land up to your dream job. Dreams are meant to be chased. Let us help you get it.</p>
-		</div>
-	</div>
-	<div class = "container">
-		<div class = "row">
-			<div class = "col-sm-6" style = "background-color:lightgrey;">
-				<h2>
-					Job-Seekers
-				</h2>
-				<p>
-					Track your competitors by looking at their profiles. <a href="/seeker">Let's go</a>
-				</p>
-			</div>
-			<div class = "col-sm-6" style = "background-color:rosybrown;">
-				<h2>
-					Job-Providers
-				</h2>
-				<p>
-					Look at your competitors what are they hiring for. <a href="/jobs">Let's go</a>
-				</p>
-			</div>
+		<div class="jumbotron" style="background-color:lightgrey">
+			<h1>Fill Your Details Here</h1>
+			<form action="/seeker" method="POST">
+				Your Name: <input 	type = "text" name = "sname" placeholder = "eg. Sam Joseph"><br>
+				Address: <input type = "text" name = "address" placeholder = "eg. Flat No, Street, City"><br>
+				email: <input type = "email" name = "email" placeholder = "eg. sam.joseph@example.com"><br>
+				Qualifications: <input type = "text" name = "qualif" placeholder = "eg. Masters in Photonics"><br>
+				Expected Salary: <input type = "number" name = "sal" placeholder = "eg. 900000"><br>
+				Experience: <input type = "number" name = "exp" placeholder = "eg. 5"><br>
+				<input type = "submit" value = "Sign Up">
+			</form>
 		</div>
 	</div>
 	<nav class = "navbar navbar-inverse navbar-fixed-bottom">
 		<div class  = "container-fluid">
 			<div class = "navbar-header">
 				<p style="color:deepskyblue"> © 2015 <a href="/">DreamJobs.com</a>. All Rights Are Reserved.</p>
+			</div>
 		</div>
 		
 	</nav>
-</html> 
+</body>
+</html>
