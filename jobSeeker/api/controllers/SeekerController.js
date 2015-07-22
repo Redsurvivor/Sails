@@ -82,6 +82,45 @@ module.exports = {
 				return res.ok("Success");
 			}
 		})
+	},
+	applyRedirect: function(req, res){
+		//sails.log("inside applyRedirect");
+		var seekerId = req.params.id;
+		Jobs.find().exec(function (err, found){
+			if(err){
+				return res.serverError();
+			}
+			else{
+				// var applied = [];
+				// var available = [];
+				// found.foreach();
+				return res.view("jobSeeker/listAvailableJobs", {availableJobs: found, seekerID: seekerId});
+			};
+		})
+	},
+	apply: function(req, res){
+		//sails.log("inside apply");
+		var seekerId = req.params.id1;
+		var jobId = req.params.id2;
+		// sails.log("+++++ "+seekerId);
+		// sails.log("**** "+jobId);
+		// return res.ok("Success");
+		Seeker.find({id: seekerId}).exec(function (err, found){
+			if(err){
+				return res.serverError();
+			}
+			else{
+				found[0].appliedJobs.add(jobId);
+				found[0].save(function (err, r){
+					if(err){
+						return res.serverError();
+					}
+					else{
+						return res.ok("Success");
+					}
+				});
+			}
+		});
 	}
 };
 

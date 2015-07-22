@@ -30,8 +30,11 @@ module.exports = {
   		experience: {
   			type: "INTEGER",
   			required: true
-  		}
-
+  		},
+      appliedJobs: {
+        collection: 'jobs',
+        via: 'seekersApplied'
+      }
 
   	}
 };

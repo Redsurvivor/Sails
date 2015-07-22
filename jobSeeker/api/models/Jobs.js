@@ -1,3 +1,4 @@
+
 /**
 * Jobs.js
 *
@@ -22,7 +23,11 @@ module.exports = {
   	},
   	location: {
   		type: 'string'
-  	}
+  	},
+    seekersApplied: {
+      collection: 'seeker',
+      via: 'appliedJobs'
+    }
   }
 };
 

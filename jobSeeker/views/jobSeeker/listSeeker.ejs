@@ -38,6 +38,7 @@
 					<th>Experience</th>
 					<th>Delete</th>
 					<th>Update</th>
+					<th>Apply</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,6 +53,7 @@
 						<td><%= allSeeker[iterator].experience %></td>
 						<td><input type="button" class="delete_btn" sId="<%=allSeeker[iterator].id%>" value="Delete" ></td>
 						<td><a href="/jobSeeker/update/<%= allSeeker[iterator].id %>">Update</a></td>
+						<td><a href="/jobSeeker/apply/<%= allSeeker[iterator].id %>">Apply</a></td>
 					</tr>
 				<% } %>
 			</tbody>
